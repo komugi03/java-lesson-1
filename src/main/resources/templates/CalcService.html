@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>四則演算</title>
+</head>
+<body>
+	<h1 align=center>四則演算</h1>
+
+	<div>
+		<p align=center>※値は-100から100まで入力可能です</p>
+	</div>
+
+	<!-- answerがnullならエラー文、nullではないなら改行表示 -->
+	<div th:switch="${answer}">
+		<div th:case="null" align=center>
+			<p th:text="${errMes}" style="color: red"></p>
+		</div>
+		<p th:case="*">
+			<br>
+		</p>
+	</div>
+
+	<!-- フォームを送る。送信先はコントローラ -->
+	<form action="/calc" method="get">
+
+		<div align="center">
+			<!-- テキストボックスX -->
+			<input type="text" name="inputX" size="5" maxlength="4"
+				th:value="${inputX}">
+
+
+			<!-- 演算子選択プルダウン -->
+			<select name="ope">
+				<option value="＋">＋</option>
+				<option value="－">－</option>
+				<option value="×">×</option>
+				<option value="÷">÷</option>
+				<option th:value="${ope}" selected hidden>
+					<p th:text="${ope}"></p>
+				</option>
+			</select>
+
+			<!-- テキストボックスY -->
+			<input type="text" name="inputY" size="5" maxlength="4"
+				th:value="${inputY}">
+
+		</div>
+
+		<!-- 計算ボタン -->
+		<p align=center>
+			<input type="submit" value="計算">
+		</p>
+
+	</form>
+
+	<!-- 条件がtrueのとき、div内を表示する -->
+	<div th:if="${answer != null}">
+
+		<!-- 計算ラベル -->
+		<div style="margin: 0 auto; width: 150px;">計算結果</div>
+
+		<!-- 計算結果表示スペース -->
+		<div align=center>
+			<table>
+				<tr>
+					<th th:text="${inputX}"></th>
+					<th th:text="${ope}"></th>
+					<th th:text="${inputY}"></th>
+					<th>=</th>
+					<th th:text="${answer}"></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

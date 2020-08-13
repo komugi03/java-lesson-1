@@ -27,7 +27,7 @@ class HelloworldControllerTests {
 
 	//モック化したテストサービスを作る
 	@MockBean	//Beanだとモックを勝手にDIしてくれる
-	TestService testService;
+	TestService testService;	//TestServiceはインターフェース
 
 	@BeforeEach	//それぞれのテストの前に実行されるもの
 	public void setup() {

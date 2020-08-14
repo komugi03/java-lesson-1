@@ -19,7 +19,7 @@ public class HelloWorldControllers {
 		//"message"にtestService.getRandomNumber()を入れてる
 		model.addAttribute("message", testService.getRandomNumber());
 		//↑test～をコメントアウトして100にしてみると、テストが赤くなる
-		//↑test～をコメントアウトして123にしてみると、テスト1はくぐりぬけてもテスト2でひっかかるからが赤くなる
+		//↑test～をコメントアウトして123にしてみると、テスト1はくぐりぬけてもテスト2でひっかかるから赤くなる
 
 		return "helloworld";
 	}

@@ -73,26 +73,31 @@ public class CalcServiceController {	//コントローラ
 			String answer = ft.format(ansZ);
 
 			model.addAttribute("answer", answer);	//answerにanswerという名前をつける
-			model.addAttribute("flag", true);	//flagという名前にtrueをいれてる？
+//			model.addAttribute("flag", true);	//flagという名前にtrueをいれてる？
 
 		}catch(IllegalArgumentExceptionX e) {	//範囲外の時の例外
 			errMes = "エラー：左側のボックスに-100から 100までの値を入力してください";
 			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
+//			model.addAttribute("flag", false);
 
 		}catch(IllegalArgumentExceptionY e) {	//範囲外の時の例外
 			errMes = "エラー：右側のボックスに-100から 100までの値を入力してください";
 			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
+//			model.addAttribute("flag", false);
 
 		}catch(ArithmeticException e) {		//0除算例外
 			errMes = "エラー：0では除算できません";
 			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
+//			model.addAttribute("flag", false);
+
 		}catch(Exception e) {
 			errMes = e.getMessage();
 			model.addAttribute("errMes", errMes);
+//			model.addAttribute("flag", false);
 		}
 
 		return "calcservice";		//HTMLファイルを指定
 
-		}
+	}
 
 }

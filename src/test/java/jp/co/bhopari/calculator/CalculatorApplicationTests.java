@@ -13,7 +13,7 @@ import jp.co.bhopari.calculator.services.TestService;
 class CalculatorApplicationTests {
 
 	@Mock
-	TestService testService;
+	TestService testService;	//インターフェースを使うことを宣言？
 
 //	@Test
 //	void test1() {

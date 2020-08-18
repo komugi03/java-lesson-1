@@ -47,15 +47,15 @@ public class CalcServiceControllerTests {
 			.thenReturn(123.0);
 
 		//減算
-		when(calc.sub(100,23))
+		when(calc.subtract(100,23))
 		.thenReturn(123.0);
 
 		//乗算
-		when(calc.mul(100,23))
+		when(calc.multiply(100,23))
 		.thenReturn(123.0);
 
 		//除算
-		when(calc.div(100,23))
+		when(calc.divide(100,23))
 		.thenReturn(123.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)

@@ -17,50 +17,6 @@ class CalcServiceTests {
 
 	CalcServiceImpl calc = new CalcServiceImpl() ;
 
-	//テストケース①加算範囲外X下限値
-	//エラーが投げられてたらOK
-	@Test
-	public void 加算_範囲外_下限値Xtest() throws IllegalArgumentExceptionY{
-		try {
-			calc.add(-101, 10);
-			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
-		}
-	}
-
-	//テストケース②加算範囲外X下境界値
-	//エラーが投げられてたらOK
-	@Test
-	public void 加算_範囲外_下境界値Xtest() throws IllegalArgumentExceptionY{
-		try {
-			calc.add(-100, 10);
-			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
-		}
-	}
-
-	//テストケース③加算範囲外X上境界値
-	//エラーが投げられてたらOK
-	@Test
-	public void 加算_範囲外_上境界値Xtest() throws IllegalArgumentExceptionY{
-		try {
-			calc.add(100, 10);
-			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
-		}
-	}
-
-	//テストケース④加算範囲外X上限値
-	//エラーが投げられてたらOK
-	@Test
-	public void 加算_範囲外_上限値Xtest() throws IllegalArgumentExceptionY{
-		try {
-			calc.add(101, 10);
-			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
-		}
-	}
-
 
 	@Test
 	public void 加算できてるかtest() throws Exception{
@@ -90,16 +46,186 @@ class CalcServiceTests {
 		assertEquals(expected, actual);
 	}
 
-
-	@Test
+//加算
+	//テストケース①
 	//エラーが投げられてたらOK
-	public void 加算範囲外Yエラーでるかtest() throws IllegalArgumentExceptionX{
+	@Test
+	public void 加算_範囲外_下限値Xtest() throws IllegalArgumentExceptionY{
 		try {
-			calc.add(100, -105);
+			calc.add(-101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース②
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_下境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(-100, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース③
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(100, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース④
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上限値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース⑤
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_下限値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.add(-101, 100);
 			assertTrue(false);
 		}catch(IllegalArgumentExceptionY e) {
 		}
 	}
+
+	//テストケース⑥
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_下境界値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.add(-100, -100);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+	//テストケース⑦
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上境界値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.add(100, 100);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+	//テストケース⑧
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上限値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.add(101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+//減算
+	//テストケース①
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_下限値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.subtract(-101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース②
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_下境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.subtract(-100, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース③
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_上境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.subtract(100, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース④
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_上限値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.subtract(101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース⑤
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_下限値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.subtract(-101, 100);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+	//テストケース⑥
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_下境界値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.subtract(-100, -100);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+	//テストケース⑦
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_上境界値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.subtract(100, 100);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+	//テストケース⑧
+	//エラーが投げられてたらOK
+	@Test
+	public void 減算_範囲外_上限値Ytest() throws IllegalArgumentExceptionX{
+		try {
+			calc.subtract(101, 101);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionY e) {
+		}
+	}
+
+
+
 
 	@Test
 	//エラーが投げられてたらOK

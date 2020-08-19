@@ -17,7 +17,51 @@ class CalcServiceTests {
 
 	CalcServiceImpl calc = new CalcServiceImpl() ;
 
-	//テストケース①
+	//テストケース①加算範囲外X下限値
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_下限値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(-101, 10);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース②加算範囲外X下境界値
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_下境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(-100, 10);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース③加算範囲外X上境界値
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上境界値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(100, 10);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+	//テストケース④加算範囲外X上限値
+	//エラーが投げられてたらOK
+	@Test
+	public void 加算_範囲外_上限値Xtest() throws IllegalArgumentExceptionY{
+		try {
+			calc.add(101, 10);
+			assertTrue(false);
+		}catch(IllegalArgumentExceptionX e) {
+		}
+	}
+
+
 	@Test
 	public void 加算できてるかtest() throws Exception{
 		double expected = 10;
@@ -46,15 +90,6 @@ class CalcServiceTests {
 		assertEquals(expected, actual);
 	}
 
-	@Test
-	//エラーが投げられてたらOK
-	public void 加算範囲外Xエラーでるかtest() throws IllegalArgumentExceptionY{
-		try {
-			calc.add(100, -105);
-			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
-		}
-	}
 
 	@Test
 	//エラーが投げられてたらOK

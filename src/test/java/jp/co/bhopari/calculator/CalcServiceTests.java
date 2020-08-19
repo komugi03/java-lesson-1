@@ -17,34 +17,6 @@ class CalcServiceTests {
 
 	CalcServiceImpl calc = new CalcServiceImpl() ;
 
-
-	@Test
-	public void 加算できてるかtest() throws Exception{
-
-	}
-
-	@Test
-	public void 減算できてるかtest() throws Exception{
-		double expected = 30;
-		double actual = calc.subtract(50, 20);
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void 乗算できてるかtest() throws Exception{
-		double expected = 35;
-		double actual = calc.multiply(7, 5);
-		assertEquals(expected, actual);
-	}
-
-	@Test
-	public void 除算できてるかtest() throws Exception{
-		double expected = 32.5;
-		double actual = calc.divide(65, 2);
-		assertEquals(expected, actual);
-	}
-
-
 	/**
 	 * 加算の範囲チェック
 	 * ①～⑤⑧⑨⑫～⑯：エラーメッセージが投げられていたらテストOK

@@ -78,7 +78,7 @@ public class CalcServiceImpl implements CalcService{
 		}
 
 		//計算
-		double res = x -y;
+		double res = x - y;
 		return res;
 
 	}

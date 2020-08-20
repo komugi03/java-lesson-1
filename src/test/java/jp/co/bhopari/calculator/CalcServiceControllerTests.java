@@ -52,21 +52,17 @@ public class CalcServiceControllerTests {
 	@Test
 	public void 初期画面表示() throws Exception{
 
-		//モックアップの設定
-		when(calc.add(100,100))
-		.thenThrow(new ArithmeticException());
-
 		//リクエストの発行
 		mockMvc.perform(get("/calc")
 				.param("inputX", "100")
 				.param("inputY", "100")
 				.param("operator", "ADD"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 	}
 
@@ -75,7 +71,7 @@ public class CalcServiceControllerTests {
 	public void 未入力エラー確認_X_null() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -83,13 +79,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -100,7 +96,7 @@ public class CalcServiceControllerTests {
 	public void 未入力エラー確認_X_値なし() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -108,13 +104,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -126,7 +122,7 @@ public class CalcServiceControllerTests {
 	public void 未入力エラー確認_Y_null() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -134,13 +130,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", (String)null)
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに値を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに値を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -151,7 +147,7 @@ public class CalcServiceControllerTests {
 	public void 未入力エラー確認_Y_値なし() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -161,11 +157,11 @@ public class CalcServiceControllerTests {
 				.param("do", "計算"))
 		.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに値を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -176,7 +172,7 @@ public class CalcServiceControllerTests {
 	public void 非整数エラー確認_X() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -184,13 +180,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに整数を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに整数を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -201,7 +197,7 @@ public class CalcServiceControllerTests {
 	public void 非整数エラー確認_Y() throws Exception {
 		//モックアップの設定
 		when(calc.add(anyInt(), anyInt()))
-		.thenReturn(0.0);
+			.thenReturn(0.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -209,13 +205,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", "99.9")
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに整数を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに整数を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが呼ばれていないことを確認
 		verify(calc, times(0)).add(anyInt(), anyInt());
@@ -228,7 +224,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.add(100,23))
-		.thenReturn(123.0);
+			.thenReturn(123.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -236,13 +232,13 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "ADD")
 				.param("do", "計算"))
-		.andExpect(model().attribute("answer", "123.0"))
+			.andExpect(model().attribute("answer", "123.0"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
 		//addメソッドが一度呼び出されたことを確認
 		verify(calc, times(1)).add(100, 23);
@@ -254,7 +250,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.subtract(100,23))
-		.thenReturn(77.0);
+			.thenReturn(77.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -262,15 +258,15 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "SUBTRACT")
 				.param("do", "計算"))
-		.andExpect(model().attribute("answer", "77.0"))
+			.andExpect(model().attribute("answer", "77.0"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
-		//addメソッドが一度呼び出されたことを確認
+		//subtractメソッドが一度呼び出されたことを確認
 		verify(calc, times(1)).subtract(100, 23);
 	}
 
@@ -280,7 +276,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.multiply(100,23))
-		.thenReturn(12300.0);
+			.thenReturn(12300.0);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -288,15 +284,15 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "MULTIPLY")
 				.param("do", "計算"))
-		.andExpect(model().attribute("answer", "12300.0"))
+			.andExpect(model().attribute("answer", "12300.0"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
-		//addメソッドが一度呼び出されたことを確認
+		//multiplyメソッドが一度呼び出されたことを確認
 		verify(calc, times(1)).multiply(100, 23);
 	}
 
@@ -306,7 +302,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.divide(100,23))
-		.thenReturn(4.35);
+			.thenReturn(4.35);
 
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
@@ -314,18 +310,41 @@ public class CalcServiceControllerTests {
 				.param("inputY", "23")
 				.param("operator", "DIVIDE")
 				.param("do", "計算"))
-		.andExpect(model().attribute("answer", "4.35"))
+			.andExpect(model().attribute("answer", "4.35"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
 
-		//addメソッドが一度呼び出されたことを確認
+		//divideメソッドが一度呼び出されたことを確認
 		verify(calc, times(1)).divide(100, 23);
 
 	}
+
+	//UnsupportedOperationExceptionが出るか
+		@Test
+		public void UnsupportedOperationExceptionが出るか() throws Exception {
+
+			//リクエストの発行(今回はWebからのリクエスト)
+			mockMvc.perform(get("/calc")
+					.param("inputX", "100")
+					.param("inputY", "23")
+					.param("operator", "UUU")
+					.param("do", "計算"))
+				.andExpect(model().attribute("errorMessage", "エラー：サポート外です"))
+
+				//Web特有 指定のview(CalcService.html)を返すか？
+				.andExpect(view().name("calcservice"))
+
+				//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+				.andExpect(status().isOk());
+
+			//divideメソッドが一度呼び出されたことを確認
+			verify(calc, times(1)).divide(100, 23);
+
+		}
 
 	//X範囲外チェック
 	@Test
@@ -333,7 +352,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.add(101,23))
-		.thenThrow(new IllegalArgumentExceptionX());
+			.thenThrow(new IllegalArgumentExceptionX());
 
 		//リクエストの発行
 		mockMvc.perform(get("/calc")
@@ -342,13 +361,16 @@ public class CalcServiceControllerTests {
 				.param("operator", "ADD")
 				.param("do", "計算"))
 
-		.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに-100から 100までの値を入力してください"))
+			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに-100から 100までの値を入力してください"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
+
+		//addメソッドが一度呼び出されたことを確認
+		verify(calc, times(1)).add(101, 23);
 	}
 
 	//Y範囲外チェック
@@ -357,7 +379,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.add(100,101))
-		.thenThrow(new IllegalArgumentExceptionY());
+			.thenThrow(new IllegalArgumentExceptionY());
 
 		//リクエストの発行
 		mockMvc.perform(get("/calc")
@@ -366,12 +388,15 @@ public class CalcServiceControllerTests {
 				.param("operator", "ADD")
 				.param("do", "計算"))
 
-		.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに-100から 100までの値を入力してください"))
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに-100から 100までの値を入力してください"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
+
+		//addメソッドが一度呼び出されたことを確認
+		verify(calc, times(1)).add(100, 101);
 
 	}
 
@@ -381,7 +406,7 @@ public class CalcServiceControllerTests {
 
 		//モックアップの設定
 		when(calc.divide(100,0))
-		.thenThrow(new ArithmeticException());
+			.thenThrow(new ArithmeticException());
 
 		//リクエストの発行
 		mockMvc.perform(get("/calc")
@@ -390,13 +415,16 @@ public class CalcServiceControllerTests {
 				.param("operator", "DIVIDE")
 				.param("do", "計算"))
 
-		.andExpect(model().attribute("errorMessage", "エラー：0では除算できません"))
+			.andExpect(model().attribute("errorMessage", "エラー：0では除算できません"))
 
-		//Web特有 指定のview(CalcService.html)を返すか？
-		.andExpect(view().name("calcservice"))
+			//Web特有 指定のview(CalcService.html)を返すか？
+			.andExpect(view().name("calcservice"))
 
-		//Web特有 HTTPステータスコードのテストなのでstatus()を使う
-		.andExpect(status().isOk());
+			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
+			.andExpect(status().isOk());
+
+		//divideメソッドが一度呼び出されたことを確認
+		verify(calc, times(1)).divide(100, 0);
 
 	}
 

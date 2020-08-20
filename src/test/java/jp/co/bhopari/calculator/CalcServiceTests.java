@@ -1,8 +1,5 @@
 package jp.co.bhopari.calculator;
 
-/**
- * サービスのテスト
- */
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -11,6 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionX;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionY;
 import jp.co.bhopari.calculator.services.impl.CalcServiceImpl;
+
+/**
+ *  計算機能を提供するサービスの単体テスト
+ */
 
 @SpringBootTest
 class CalcServiceTests {
@@ -28,7 +29,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -38,7 +39,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -48,7 +49,7 @@ class CalcServiceTests {
 		try {
 			calc.add(100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -58,7 +59,7 @@ class CalcServiceTests {
 		try {
 			calc.add(101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -68,7 +69,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -96,7 +97,7 @@ class CalcServiceTests {
 		try {
 			calc.add(101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -107,7 +108,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -135,7 +136,7 @@ class CalcServiceTests {
 		try {
 			calc.add(101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -145,7 +146,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -155,7 +156,7 @@ class CalcServiceTests {
 		try {
 			calc.add(-100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -165,7 +166,7 @@ class CalcServiceTests {
 		try {
 			calc.add(100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -175,7 +176,7 @@ class CalcServiceTests {
 		try {
 			calc.add(101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 	/**
@@ -189,7 +190,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -199,7 +200,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -209,7 +210,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -219,7 +220,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -229,7 +230,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -257,7 +258,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -268,7 +269,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -296,7 +297,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -306,7 +307,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -316,7 +317,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(-100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -326,7 +327,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -336,7 +337,7 @@ class CalcServiceTests {
 		try {
 			calc.subtract(101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -351,7 +352,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -361,7 +362,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -371,7 +372,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -381,7 +382,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -391,7 +392,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -419,7 +420,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -430,7 +431,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -458,7 +459,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -468,7 +469,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -478,7 +479,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(-100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -488,7 +489,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -498,7 +499,7 @@ class CalcServiceTests {
 		try {
 			calc.multiply(101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -513,7 +514,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -523,7 +524,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -533,7 +534,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(100, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -543,7 +544,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(101, -101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -553,7 +554,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -581,7 +582,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(101, -100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -592,7 +593,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -620,7 +621,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(101, 100);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -630,7 +631,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
 
@@ -640,7 +641,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(-100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -650,7 +651,7 @@ class CalcServiceTests {
 		try {
 			calc.divide(100, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionY e) {
+		} catch (IllegalArgumentExceptionY e) {
 		}
 	}
 
@@ -660,7 +661,27 @@ class CalcServiceTests {
 		try {
 			calc.divide(101, 101);
 			assertTrue(false);
-		}catch(IllegalArgumentExceptionX e) {
+		} catch (IllegalArgumentExceptionX e) {
 		}
 	}
+
+	//0除算
+	@Test
+	public void 除算_0除算_1test() throws IllegalArgumentExceptionX, IllegalArgumentExceptionY, ArithmeticException{
+
+			double expected = 1;
+			double actual = calc.divide(100, 100);
+			assertEquals(expected, actual);
+
+	}
+
+	@Test
+	public void 除算_0除算_2test() throws IllegalArgumentExceptionX, IllegalArgumentExceptionY{
+		try {
+			calc.divide(100, 0);
+			assertTrue(false);
+		} catch (ArithmeticException e) {
+		}
+	}
+
 }

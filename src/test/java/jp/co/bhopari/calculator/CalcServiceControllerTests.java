@@ -45,12 +45,11 @@ public class CalcServiceControllerTests {
 	public void test() throws Exception {
 
 
-		//加算
-		//モックアップを設定する。
+		//加算サービスを呼び出せているか
+		//モックアップの設定
 		when(calc.add(100,23))
 		.thenReturn(123.0);
 
-		//テストサービスのaddが呼び出されたときに123か確認
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
 				.param("inputX", "100")
@@ -69,12 +68,11 @@ public class CalcServiceControllerTests {
 		verify(calc, times(1)).add(100, 23);
 
 
-		//減算
-		//モックアップを設定する。
+		//減算サービスを呼び出せているか
+		//モックアップの設定
 		when(calc.subtract(100,23))
 		.thenReturn(77.0);
 
-		//テストサービスのsubtractが呼び出されたときに123か確認
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
 				.param("inputX", "100")
@@ -93,12 +91,11 @@ public class CalcServiceControllerTests {
 		verify(calc, times(1)).subtract(100, 23);
 
 
-		//乗算
-		//モックアップを設定する。
+		//乗算サービスを呼び出せているか
+		//モックアップの設定
 		when(calc.multiply(100,23))
 		.thenReturn(12300.0);
 
-		//テストサービスのsubtractが呼び出されたときに123か確認
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
 				.param("inputX", "100")
@@ -117,12 +114,11 @@ public class CalcServiceControllerTests {
 		verify(calc, times(1)).multiply(100, 23);
 
 
-		//除算
-		//モックアップを設定する。
+		//除算サービスを呼び出せているか
+		//モックアップの設定
 		when(calc.divide(100,23))
 		.thenReturn(4.35);
 
-		//テストサービスのsubtractが呼び出されたときに123か確認
 		//リクエストの発行(今回はWebからのリクエスト)
 		mockMvc.perform(get("/calc")
 				.param("inputX", "100")
@@ -141,17 +137,25 @@ public class CalcServiceControllerTests {
 		verify(calc, times(1)).divide(100, 23);
 
 	}
+	
+	//X入力ェック
+	@Test
+	public void 未入力エラー確認_X() throws Exception {
+		//モックアップの設定
+		when(calc.add(101,23))
+			.thenThrow(new IllegalArgumentExceptionX());
+		
+	}
 
 	/**
-	 * 何も入力されていない時の例外チェック
+	 * 範囲外チェック
 	 * エラーメッセージが投げられていたらテストOK
 	 */
 	//テストケース①
 	@Test
 	public void 加算_範囲外_1test() throws Exception{
 
-
-		//モックアップを設定する。
+		//モックアップの設定
 		when(calc.add(101,23))
 		.thenThrow(new IllegalArgumentExceptionX());
 
@@ -162,7 +166,6 @@ public class CalcServiceControllerTests {
 				.param("do", "計算"))
 
 		.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに-100から 100までの値を入力してください"));
-
 
 	}
 

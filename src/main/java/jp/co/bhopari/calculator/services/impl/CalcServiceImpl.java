@@ -1,14 +1,16 @@
 package jp.co.bhopari.calculator.services.impl;
-/**
- * @author bvs20002
- * 計算機能を提供するサービス
- */
 
 import org.springframework.stereotype.Service;
 
 import jp.co.bhopari.calculator.services.CalcService;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionX;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionY;
+
+/**
+ * @author bvs20002
+ * 計算機能を提供するサービス
+ */
+
 
 //実装したクラス
 @Service

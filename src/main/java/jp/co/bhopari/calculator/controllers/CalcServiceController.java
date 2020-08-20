@@ -1,7 +1,5 @@
 package jp.co.bhopari.calculator.controllers;
 
-import java.text.DecimalFormat;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,91 +10,135 @@ import jp.co.bhopari.calculator.services.CalcService;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionX;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionY;
 
+/**
+ * @author bvs20002
+ * コントローラ
+ */
+
+
 @Controller
-public class CalcServiceController {	//コントローラ
+public class CalcServiceController {
 
+	//CalcService型のcalcServiceを定義
 	@Autowired
-	private CalcService calcService;	//CalcService型のcalcServiceを定義
+	private CalcService calcService;
 
-	@GetMapping("/calc")	//サーブレットを指定
-	public String calc(Model model, @ModelAttribute("inputX") String inputX,
-			@ModelAttribute("inputY") String inputY, @ModelAttribute("ope") String ope) {
+	//演算子を定数化
+	private enum Operator{
+		ADD,
+		SUBTRACT,
+		MULTIPLY,
+		DIVIDE
+	}
 
-		String errMes = null;
+	private static final String NAME_SERVRET = "/calc";
+
+	/**
+	 * 初期時
+	 */
+
+	@GetMapping(path = NAME_SERVRET)
+	public String calc() {
+		return "calcservice";
+	}
+
+
+	/**
+	 * 計算実行後
+	 * @param model モデル
+	 * @param inputX 数値入力ボックスXに入力された値
+	 * @param inputY 数値入力ボックスYに入力された値
+	 * @param operator 演算方法選択ボックスで選択された演算子
+	 * @return 計算結果
+	 */
+
+	//サーブレットを指定
+	@GetMapping(path = NAME_SERVRET, params = "do")
+	public String calc(Model model,
+				@ModelAttribute("inputX") String inputX,
+				@ModelAttribute("inputY") String inputY,
+				@ModelAttribute("operator") Operator operator) {
+
+		int numX = 0;
+		int numY = 0;
+
+		//チェック処理
+		//何も入力されていない時の例外
+		if(inputX == null || inputX.equals("")) {
+			model.addAttribute("errorMessage", "エラー：左側のボックスに値を入力してください");
+			return "calcservice";
+		}
+		if(inputY == null || inputY.equals("")) {
+			model.addAttribute("errorMessage", "エラー：右側のボックスに値を入力してください");
+			return "calcservice";
+		}
+
+		//整数ではない時の例外
+		try {
+			numX = Integer.parseInt(inputX);
+		} catch (NumberFormatException e){
+			model.addAttribute("errorMessage", "エラー：左側のボックスに整数を入力してください");
+			return "calcservice";
+		}
 
 		try {
-			//何も入力されていない時の例外
-			if(inputX.equals("")) {
-				throw new Exception("エラー：左側のボックスに値を入力してください");
-			}
-			if(inputY.equals("")) {
-				throw new Exception("エラー：右側のボックスに値を入力してください");
-			}
+			numY = Integer.parseInt(inputY);
+		} catch (NumberFormatException e){
+			model.addAttribute("errorMessage", "エラー：右側のボックスに整数を入力してください");
+			return "calcservice";
+		}
 
-			//整数ではない時の例外
-			int numX = 0;
-			int numY = 0;
 
-			try {
-				numX = Integer.parseInt(inputX);
-			}catch(NumberFormatException e){
-				throw new Exception("エラー：左側のボックスに整数を入力してください");
-			}
+		//メイン処理
+		try {
+			//計算結果を初期化
+			double answerZ = 0;
 
-			try {
-				numY = Integer.parseInt(inputY);
-			}catch(NumberFormatException e){
-				throw new Exception("エラー：右側のボックスに整数を入力してください");
-			}
 
-			double ansZ = 0;	//計算結果を初期化
-
-			//計算サービスの呼び出し
-			switch(ope) {	//選択された演算子によって分岐
-			case "＋":
-				ansZ = calcService.add(numX, numY);
+			//計算サービスの呼び出し(選択された演算子によって分岐)
+			switch(operator) {
+			case ADD:
+				answerZ = calcService.add(numX, numY);
+				model.addAttribute("enzanshi", "＋");
 				break;
-			case "－":
-				ansZ = calcService.sub(numX, numY);
+			case SUBTRACT:
+				answerZ = calcService.subtract(numX, numY);
+				model.addAttribute("enzanshi", "－");
 				break;
-			case "×":
-				ansZ = calcService.mul(numX, numY);
+			case MULTIPLY:
+				answerZ = calcService.multiply(numX, numY);
+				model.addAttribute("enzanshi", "×");
 				break;
-			case "÷":
-				ansZ = calcService.div(numX, numY);
+			case DIVIDE:
+				answerZ = calcService.divide(numX, numY);
+				model.addAttribute("enzanshi", "÷");
 				break;
 			}
 
 			//計算結果を四捨五入し、文字列に変換（ビューに表示するanswerを定義）
-			//末尾の0を削除する→DecimalFormat
-			DecimalFormat ft = new DecimalFormat("0.##");	//フォーマットの書式を宣言
-			String answer = ft.format(ansZ);
+			double answerDouble = ((double)Math.round(answerZ * 100))/100;
+			String answer = String.valueOf(answerDouble);
+			model.addAttribute("answer", answer);
 
-			model.addAttribute("answer", answer);	//answerにanswerという名前をつける
-//			model.addAttribute("flag", true);	//flagという名前にtrueをいれてる？
 
-		}catch(IllegalArgumentExceptionX e) {	//範囲外の時の例外
-			errMes = "エラー：左側のボックスに-100から 100までの値を入力してください";
-			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
-//			model.addAttribute("flag", false);
+			//メイン処理の例外処理
+			//Xが範囲外の時の例外
+		} catch (IllegalArgumentExceptionX e) {
+			model.addAttribute("errorMessage", "エラー：左側のボックスに-100から 100までの値を入力してください");
 
-		}catch(IllegalArgumentExceptionY e) {	//範囲外の時の例外
-			errMes = "エラー：右側のボックスに-100から 100までの値を入力してください";
-			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
-//			model.addAttribute("flag", false);
 
-		}catch(ArithmeticException e) {		//0除算例外
-			errMes = "エラー：0では除算できません";
-			model.addAttribute("errMes", errMes);	//errMesにerrMesという名前をつける
-//			model.addAttribute("flag", false);
+			//Yが範囲外の時の例外
+		} catch (IllegalArgumentExceptionY e) {
+			model.addAttribute("errorMessage", "エラー：右側のボックスに-100から 100までの値を入力してください");
 
-		}catch(Exception e) {
-			errMes = e.getMessage();
-			model.addAttribute("errMes", errMes);
-//			model.addAttribute("flag", false);
+
+			//0除算例外
+		} catch (ArithmeticException e) {
+			model.addAttribute("errorMessage", "エラー：0では除算できません");
 		}
 
-		return "calcservice";		//HTMLファイルを指定
+		//HTMLファイルを指定
+		return "calcservice";
 
 	}
 

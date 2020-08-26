@@ -6,64 +6,70 @@
 </head>
 <body>
 	<!-- タイトル -->
-	<h1 align = "center">四則演算</h1>
+	<h1 align="center">四則演算</h1>
 
 	<!-- 注意メッセージ -->
 	<div>
-		<p align = "center">※値は-100から100まで入力可能です</p>
+		<p align="center">※値は-100から100まで入力可能です</p>
 	</div>
 
 	<!-- フォームを送る。送信先はコントローラ -->
-	<form action = "/calc" method = "get">
+	<form action="/calc" method="get">
 
 		<!-- エラーメッセージ -->
-		<div align = "center">
-			<p th:text = "${errorMessage}" style = "color: red"></p>
+		<div align="center">
+			<p th:text="${errorMessage}" style="color: red"></p>
 		</div>
 
 
-		<div align = "center">
+		<div align="center">
 			<!-- 数値入力ボックスX -->
-			<input type = "text" name = "inputX" size = "5" maxlength = "4"
-				th:value = "${inputX}">
+			<input type="text" name="inputX" size="5" maxlength="4"
+				th:value="${inputX}">
 
 
 			<!-- 演算方法選択ボックス（プルダウン） -->
-			<select name = "operator">
-				<option value = "ADD" th:selected = "${enzanshi} == 'add'">＋</option>
-				<option value = "SUBTRACT" th:selected = "${enzanshi} == 'subtract'">－</option>
-				<option value = "MULTIPLY" th:selected = "${enzanshi} == 'multiply'">×</option>
-				<option value = "DIVIDE" th:selected = "${enzanshi} == 'divide'">÷</option>
+			<select name="operator">
+				<option value="ADD" th:selected="${operator.name()} == 'ADD'">＋</option>
+				<option value="SUBTRACT" th:selected="${operator.name()} == 'SUBTRACT'">－</option>
+				<option value="MULTIPLY" th:selected="${operator.name()} == 'MULTIPLY'">×</option>
+				<option value="DIVIDE" th:selected="${operator.name()} == 'DIVIDE'">÷</option>
 			</select>
 
 			<!-- 数値入力ボックスY -->
-			<input type = "text" name = "inputY" size = "5" maxlength = "4"
-				th:value = "${inputY}">
+			<input type="text" name="inputY" size="5" maxlength="4"
+				th:value="${inputY}">
 
 		</div>
 
 		<!-- 計算実行ボタン -->
-		<p align = "center">
-			<input type = "submit" name = "do" value = "計算">
+		<p align="center">
+			<input type="submit" name="do" value="計算">
 		</p>
 
 	</form>
 
 	<!-- 条件がtrueのとき、div内を表示する -->
-	<div th:if = "${answer != null}">
+	<div th:if="${answer != null}">
 
 		<!-- 計算結果ラベル -->
-		<div style = "margin: 0 auto; width: 150px;">計算結果</div>
+		<div style="margin: 0 auto; width: 150px;">計算結果</div>
 
 		<!-- 計算結果表示スペース -->
-		<div align = "center">
+		<div align="center">
 
 			<div>
-				<span th:text = "${inputX}"></span>
-				<span th:switch = "${operator}">演算子</span>
-				<span th:text = "${inputY}"></span>
+				<span th:text="${inputX}"></span>
+				<span th:switch="${operator.name()}">
+					<span th:case="ADD">＋</span>
+					<span th:case="SUBTRACT">－</span>
+					<span th:case="MULTIPLY">×</span>
+					<span th:case="DIVIDE">÷</span>
+					<span th:case="*" >対象なし</span>
+				</span>
+				<span th:text="${inputY}"></span>
 				=
-				<span th:text = "${answer}"></span>
+				<span th:text="${answer}"></span>
 			</div>
 
 		</div>

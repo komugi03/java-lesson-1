@@ -58,7 +58,13 @@
 		<!-- 計算結果表示スペース -->
 		<div align = "center">
 
-			<p th:text = "${inputX} + ${enzanshi} + ${inputY} + '=' + ${answer}"></p>
+			<div>
+				<span th:text = "${inputX}"></span>
+				<span th:switch = "${operator}">演算子</span>
+				<span th:text = "${inputY}"></span>
+				=
+				<span th:text = "${answer}"></span>
+			</div>
 
 		</div>
 	</div>

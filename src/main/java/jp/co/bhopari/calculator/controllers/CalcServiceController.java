@@ -14,7 +14,7 @@ import jp.co.bhopari.calculator.services.IllegalArgumentExceptionY;
 
 /**
  * @author bvs20002
- * 計算画面を表示するコントローラ。
+ * 計算画面を表示するコントローラ
  */
 
 

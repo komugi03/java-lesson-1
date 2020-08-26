@@ -10,9 +10,11 @@ import jp.co.bhopari.calculator.services.CalcService;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionX;
 import jp.co.bhopari.calculator.services.IllegalArgumentExceptionY;
 
+
+
 /**
  * @author bvs20002
- * コントローラ
+ * 計算画面を表示するコントローラ
  */
 
 
@@ -23,18 +25,10 @@ public class CalcServiceController {
 	@Autowired
 	private CalcService calcService;
 
-	//演算子を定数化
-	private enum Operator{
-		ADD,
-		SUBTRACT,
-		MULTIPLY,
-		DIVIDE
-	}
-
 	private static final String NAME_SERVRET = "/calc";
 
 	/**
-	 * 初期時
+	 * 初期時（計算ボタンを押さなかった場合）
 	 */
 
 	@GetMapping(path = NAME_SERVRET)
@@ -64,11 +58,11 @@ public class CalcServiceController {
 
 		//チェック処理
 		//何も入力されていない時の例外
-		if(inputX == null || inputX.equals("")) {
+		if (inputX == null || inputX.equals("")) {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに値を入力してください");
 			return "calcservice";
 		}
-		if(inputY == null || inputY.equals("")) {
+		if (inputY == null || inputY.equals("")) {
 			model.addAttribute("errorMessage", "エラー：右側のボックスに値を入力してください");
 			return "calcservice";
 		}
@@ -96,27 +90,26 @@ public class CalcServiceController {
 
 
 			//計算サービスの呼び出し(選択された演算子によって分岐)
-			switch(operator) {
+			switch (operator) {
 			case ADD:
 				answerZ = calcService.add(numX, numY);
-				model.addAttribute("enzanshi", "＋");
 				break;
 			case SUBTRACT:
 				answerZ = calcService.subtract(numX, numY);
-				model.addAttribute("enzanshi", "－");
 				break;
 			case MULTIPLY:
 				answerZ = calcService.multiply(numX, numY);
-				model.addAttribute("enzanshi", "×");
 				break;
 			case DIVIDE:
 				answerZ = calcService.divide(numX, numY);
-				model.addAttribute("enzanshi", "÷");
 				break;
+			default:
+				throw new UnsupportedOperationException();
+
 			}
 
 			//計算結果を四捨五入し、文字列に変換（ビューに表示するanswerを定義）
-			double answerDouble = ((double)Math.round(answerZ * 100))/100;
+			double answerDouble = ((double)Math.round(answerZ * 100)) / 100;
 			String answer = String.valueOf(answerDouble);
 			model.addAttribute("answer", answer);
 
@@ -135,7 +128,14 @@ public class CalcServiceController {
 			//0除算例外
 		} catch (ArithmeticException e) {
 			model.addAttribute("errorMessage", "エラー：0では除算できません");
+
+			//サポート外例外
+		} catch (UnsupportedOperationException e) {
+			model.addAttribute("errorMessage", "エラー：サポート外です");
+
 		}
+
+
 
 		//HTMLファイルを指定
 		return "calcservice";

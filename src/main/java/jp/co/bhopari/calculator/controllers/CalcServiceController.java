@@ -32,8 +32,9 @@ public class CalcServiceController {
 	 */
 
 	@GetMapping(path = NAME_SERVRET)
-	public String calc() {
-		return "calcservice";
+	public String calc(Model model) {
+		model.addAttribute("operator",Operator.ADD) ;
+		return "CalcService";
 	}
 
 
@@ -60,11 +61,11 @@ public class CalcServiceController {
 		//何も入力されていない時の例外
 		if (inputX == null || inputX.equals("")) {
 			model.addAttribute("errorMessage", "エラー：左側のボックスに値を入力してください");
-			return "calcservice";
+			return "CalcService";
 		}
 		if (inputY == null || inputY.equals("")) {
 			model.addAttribute("errorMessage", "エラー：右側のボックスに値を入力してください");
-			return "calcservice";
+			return "CalcService";
 		}
 
 		//整数ではない時の例外
@@ -72,14 +73,14 @@ public class CalcServiceController {
 			numX = Integer.parseInt(inputX);
 		} catch (NumberFormatException e){
 			model.addAttribute("errorMessage", "エラー：左側のボックスに整数を入力してください");
-			return "calcservice";
+			return "CalcService";
 		}
 
 		try {
 			numY = Integer.parseInt(inputY);
 		} catch (NumberFormatException e){
 			model.addAttribute("errorMessage", "エラー：右側のボックスに整数を入力してください");
-			return "calcservice";
+			return "CalcService";
 		}
 
 
@@ -138,7 +139,7 @@ public class CalcServiceController {
 
 
 		//HTMLファイルを指定
-		return "calcservice";
+		return "CalcService";
 
 	}
 

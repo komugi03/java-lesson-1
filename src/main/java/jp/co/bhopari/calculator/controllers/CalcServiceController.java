@@ -79,12 +79,12 @@ public class CalcServiceController {
 		try {
 			numY = Integer.parseInt(inputY);
 
-			//サポート外例外
 		} catch (NumberFormatException e){
 			model.addAttribute("errorMessage", "エラー：右側のボックスに整数を入力してください");
 			return "CalcService";
 		}
 
+		//サポート外例外
 		//文字列として受け取ったoperatorをOperator型に変換する処理。
 		Operator operator = null;
 

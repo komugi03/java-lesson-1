@@ -52,7 +52,7 @@ public class CalcServiceController {
 	public String calc(Model model,
 				@ModelAttribute("inputX") String inputX,
 				@ModelAttribute("inputY") String inputY,
-				@ModelAttribute("operator") Operator operator) {
+				@ModelAttribute("operator") String stringOperator) {
 
 		int numX = 0;
 		int numY = 0;
@@ -78,11 +78,22 @@ public class CalcServiceController {
 
 		try {
 			numY = Integer.parseInt(inputY);
+
+			//サポート外例外
 		} catch (NumberFormatException e){
 			model.addAttribute("errorMessage", "エラー：右側のボックスに整数を入力してください");
 			return "CalcService";
 		}
 
+		//文字列として受け取ったoperatorをOperator型に変換する処理。
+		Operator operator = null;
+
+		try {
+			operator = Operator.valueOf(stringOperator);
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("errorMessage", "エラー：サポート外です");
+			return "CalcService";
+		}
 
 		//メイン処理
 		try {
@@ -105,7 +116,6 @@ public class CalcServiceController {
 				answerZ = calcService.divide(numX, numY);
 				break;
 			default:
-				throw new UnsupportedOperationException();
 
 			}
 
@@ -130,12 +140,7 @@ public class CalcServiceController {
 		} catch (ArithmeticException e) {
 			model.addAttribute("errorMessage", "エラー：0では除算できません");
 
-			//サポート外例外
-		} catch (UnsupportedOperationException e) {
-			model.addAttribute("errorMessage", "エラー：サポート外です");
-
 		}
-
 
 
 		//HTMLファイルを指定

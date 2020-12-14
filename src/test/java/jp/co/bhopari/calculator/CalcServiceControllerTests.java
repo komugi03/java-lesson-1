@@ -59,7 +59,7 @@ public class CalcServiceControllerTests {
 				.param("operator", "ADD"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -82,7 +82,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -107,7 +107,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに値を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -133,7 +133,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに値を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -158,7 +158,7 @@ public class CalcServiceControllerTests {
 		.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに値を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -183,7 +183,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに整数を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -208,7 +208,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに整数を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -235,7 +235,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("answer", "123.0"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -261,7 +261,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("answer", "77.0"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -287,7 +287,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("answer", "12300.0"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -313,7 +313,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("answer", "4.35"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -323,9 +323,9 @@ public class CalcServiceControllerTests {
 
 	}
 
-	//UnsupportedOperationExceptionが出るか
+	//サポート外の演算子が選択された時エラー文が表示されるか
 		@Test
-		public void UnsupportedOperationExceptionが出るか() throws Exception {
+		public void サポート外の演算子が選択された時エラー文が表示されるか() throws Exception {
 
 			//リクエストの発行(今回はWebからのリクエスト)
 			mockMvc.perform(get("/calc")
@@ -336,13 +336,13 @@ public class CalcServiceControllerTests {
 				.andExpect(model().attribute("errorMessage", "エラー：サポート外です"))
 
 				//Web特有 指定のview(CalcService.html)を返すか？
-				.andExpect(view().name("calcservice"))
+				.andExpect(view().name("CalcService"))
 
 				//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 				.andExpect(status().isOk());
 
 			//divideメソッドが一度呼び出されたことを確認
-			verify(calc, times(1)).divide(100, 23);
+			verify(calc, times(0)).divide(100, 23);
 
 		}
 
@@ -364,7 +364,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：左側のボックスに-100から 100までの値を入力してください"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -390,7 +390,7 @@ public class CalcServiceControllerTests {
 
 			.andExpect(model().attribute("errorMessage", "エラー：右側のボックスに-100から 100までの値を入力してください"))
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
@@ -418,7 +418,7 @@ public class CalcServiceControllerTests {
 			.andExpect(model().attribute("errorMessage", "エラー：0では除算できません"))
 
 			//Web特有 指定のview(CalcService.html)を返すか？
-			.andExpect(view().name("calcservice"))
+			.andExpect(view().name("CalcService"))
 
 			//Web特有 HTTPステータスコードのテストなのでstatus()を使う
 			.andExpect(status().isOk());
